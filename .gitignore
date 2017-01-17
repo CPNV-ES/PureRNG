@@ -41,5 +41,3 @@ buck-out/
 android/app/libs
 *.keystore
 
-# REACTSHIT
-react-boilerplate/

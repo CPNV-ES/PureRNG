@@ -1,11 +1,21 @@
+// import { AppRegistry } from 'react-native';
+//import App from './app';
+
+
+
+
+
+
+
 import React, { Component } from 'react';
+
 
 import { AppRegistry, StyleSheet, Text, View, Navigator, TouchableOpacity,Image} from 'react-native';
 
-import RoomsPage from './RoomsPage';
+
 import LoginPage from './LoginPage';
 import SplashPage from './SplashPage';
-import RoulettePage from './RoulettePage';
+
 
 
 class App extends Component {
@@ -65,25 +75,5 @@ class App extends Component {
 
 }
 
-/* STYLING */
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-});
-/*END STYLING  */
 
 AppRegistry.registerComponent('PureRNG', () => App);

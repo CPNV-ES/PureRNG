@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {Text, View, Navigator, TouchableOpacity, Image} from 'react-native';
 
+
 export default class SplashPage extends Component {
     componentWillMount() {
         var navigator = this.props.navigator;
@@ -9,10 +10,10 @@ export default class SplashPage extends Component {
             navigator.replace({
                 id: 'LoginPage',
             });
-        }, 2000);
+        }, 100);
     }
     render() {
-        let pic = require('./images/Splash.png');
+        let pic = require('./app/images/Splash.png');
         return (
             // Try setting `alignItems` to 'flex-start'
             // Try setting `justifyContent` to `flex-end`.
