@@ -6,23 +6,11 @@ import styles from './styles';
 const Button = (props) => {
     const { text, onPress } = props;
     return (
-    <TouchableOpacity style={styles.buttonww} onPress={onPress} backgroundStyle="{styles.backgroundbutton}">
+    <TouchableOpacity style={styles.buttonww} onPress={onPress}>
         <Text style={styles.loginButtonLabel}>
             {text}
         </Text>
     </TouchableOpacity>
-        // <AwesomeButton
-        //     style={styles.buttonww}
-        //     backgroundStyle={styles.backgroundbutton}
-        //     labelStyle={styles.loginButtonLabel}
-        //     {/*states={{*/}
-        //         {/*default: {*/}
-        //             {/*text: {text},*/}
-        //             {/*onPress: {onPress},*/}
-        //             {/*backgroundColor: {bgcolor},*/}
-        //             {/*color:{txtcolor}*/}
-        //         {/*}}}*/}
-        // />
     );
 };
 
@@ -33,8 +21,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
     text: 'Button Text',
-    // eslint-disable-next-line no-console
-    onPress: () => console.log('Button Pressed'),
+    onPress: () => console.warn('Button Pressed'),
 };
 
 

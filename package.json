@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@exponent/react-native-navigator": "^0.4.9",
     "react": "15.4.1",
     "react-native": "0.39.0",
     "react-native-awesome-button": "^1.6.0",

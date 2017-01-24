@@ -4,13 +4,13 @@ import styles from './styles';
 import images from '../../config/images';
 
 let pic = images.logo;
-const NavBar = (props) => {
+const Navbar = (props) => {
     return (
         <View  elevation={5} style={styles.top}>
             <View style={styles.head}>
-                <Image source={pic} style={{width: 300, height: 115}} />
+                <Image source={pic} style={{width: 300, height: 105}} />
             </View>
         </View>
     );
 };
-export default NavBar;
+export default Navbar;
