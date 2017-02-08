@@ -7,11 +7,16 @@ import Navbar from '../../components/NavBar';
 
 const SignIn = (props) => {
     const bg = images.homeBg;
+    let pic = images.logo;
     // const {onDetailsPress} = props;
     return (
 
         <View style={styles.logpage}>
-    <Navbar/>
+            <View  elevation={5} style={styles.top}>
+                <View style={styles.head}>
+                    <Image source={pic} style={{width: 240, height: 85}} />
+                </View>
+            </View>
             <View style={styles.bgImageWrapper}>
                 <Image source={bg} style={styles.backgroundImage} />
             </View>
@@ -20,7 +25,7 @@ const SignIn = (props) => {
                 <Text>Sign in page - you are disconnected </Text>
                 <Button
                     text="tap here to connect"
-                    onPress={props.onDetailsPress}
+                    onPress={props.SignInPress}
                 />
             </View>
         </View>
@@ -28,7 +33,7 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-    onDetailsPress: React.PropTypes.func,
+    SignInPress: React.PropTypes.func,
 }
 
 

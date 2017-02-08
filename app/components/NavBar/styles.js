@@ -2,14 +2,13 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     top:{
-        height:120,
+        height:50,
         backgroundColor:'#f3f3f3',
     },
     head: {
         flex: 1,
-        flexDirection:'column',
-        justifyContent:'center',
+        left: 15,
+        flexDirection:'row',
         alignItems: 'center',
-
-    },
+    }
 });

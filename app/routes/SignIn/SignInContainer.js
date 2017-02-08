@@ -5,7 +5,7 @@ import Routes from '../../config/routes';
 const SignInContainer = (props) => {
     return (
         <SignIn
-            onDetailsPress={() => props.navigator.push(Routes.getHomeRoute())}
+            SignInPress={() => props.navigator.push(Routes.getHomeRoute())}
         />
     );
 };

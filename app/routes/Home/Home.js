@@ -7,17 +7,18 @@ import images from '../../config/images';
 
 const Home = (props) => {
     const bg = images.homeBg;
+
     // const {onDetailsPress} = props;
     return (
 
         <View style={styles.logpage}>
-
+            <Navbar/>
             <View style={styles.bgImageWrapper}>
                 <Image source={bg} style={styles.backgroundImage} />
 
             </View>
 
-            <Navbar/>
+
 
             <View style={styles.logcontent}>
                 <Text>This is the homepage and you are connected </Text>
@@ -29,13 +30,14 @@ const Home = (props) => {
 
                 <Button
                     text="Tap here to access the rooms"
-                    onPress={console.warn('in development')}
+                    onPress={props.gameChoiceOnPress}
                 />
             </View>
         </View>
     );
 };
 Home.propTypes = {
+    gameChoiceOnPress: React.PropTypes.func,
     disconnectOnPress: React.PropTypes.func,
 }
 

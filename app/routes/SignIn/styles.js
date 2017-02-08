@@ -18,4 +18,14 @@ export default StyleSheet.create({
         justifyContent:'center',
         alignItems: 'center',
     },
+    top:{
+        height:140,
+        backgroundColor:'#f3f3f3',
+    },
+    head: {
+        flex: 1,
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems: 'center',
+    }
 });

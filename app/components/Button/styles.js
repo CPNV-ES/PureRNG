@@ -12,14 +12,7 @@ export default StyleSheet.create({
     },
     loginButtonLabel:{
         color:'black',
-        fontSize:25,
+        fontSize:15,
         fontWeight:"100",
-    },
-    buttonww:{
-        width:500,
-        flexDirection: 'row',
-        margin: 20,
-        alignItems: 'center',
-        justifyContent: 'center'
     },
 });
