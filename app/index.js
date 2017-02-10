@@ -1,7 +1,6 @@
 // Entry point of the application
 // Index.ios.js and index.android.js will require this file and boom
 import React from 'react';
-
 import LoggedOut from './layouts/LoggedOut';
 
 // CONNECT ....

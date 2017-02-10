@@ -3,24 +3,30 @@ import { View, Image } from 'react-native';
 import styles from './styles';
 import images from '../../config/images';
 import Button from '../Button';
-
+import Routes from '../../config/routes';
 let pic = images.logo;
 const Navbar = (props) => {
     return (
-        <View  elevation={5} style={styles.top}>
+        <View  elevation={25} style={styles.top}>
             <View style={styles.head}>
                 <Image source={pic} style={{width: 100, height: 35}} />
                 <View style={{left:350,flexDirection:'row',alignItems: 'center',}}>
                 <Button
 
                         text="Profile "
-                    onPress={props.getProfile}
+                    onPress={props.disconnectOnPress}
                 />
                 <Button
-
                         text=" logout"
-                    onPress={props.getSignIn}
+                        onPress={props.getLogout}
                 />
+                    <Button text="oui"
+                            onPress={() => {
+                            // Get a route object from the router
+                            let route = Routes.getSignIn(navigator);
+                            this.props.navigator.push(route);
+                    }}>
+                    </Button>
                 </View>
             </View>
         </View>
@@ -28,8 +34,6 @@ const Navbar = (props) => {
 };
 
 Navbar.propTypes = {
-    getProfile: React.PropTypes.func,
-    getSignIn: React.PropTypes.func,
+    disconnectOnPress: React.PropTypes.func,
 }
-
 export default Navbar;

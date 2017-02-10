@@ -5,14 +5,13 @@ export default StyleSheet.create({
         position: 'absolute',
         top: 0, bottom: 0, left: 0, right: 0
     },
-    logpage:{
+    MainView:{
         flex:1,
     },
     backgroundImage: {
-        flex: 1,
         resizeMode: "stretch"
     },
-    logcontent:{
+    MainViewContent:{
         flex:2,
         flexDirection:'column',
         justifyContent:'center',

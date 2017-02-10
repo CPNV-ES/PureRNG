@@ -11,7 +11,7 @@ const SignIn = (props) => {
     // const {onDetailsPress} = props;
     return (
 
-        <View style={styles.logpage}>
+        <View style={styles.MainView}>
             <View  elevation={5} style={styles.top}>
                 <View style={styles.head}>
                     <Image source={pic} style={{width: 240, height: 85}} />
@@ -21,7 +21,7 @@ const SignIn = (props) => {
                 <Image source={bg} style={styles.backgroundImage} />
             </View>
 
-            <View style={styles.logcontent}>
+            <View style={styles.MainViewContent}>
                 <Text>Sign in page - you are disconnected </Text>
                 <Button
                     text="tap here to connect"

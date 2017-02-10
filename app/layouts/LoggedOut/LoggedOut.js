@@ -8,14 +8,14 @@ import Navbar from '../../components/NavBar';
 
 const LoggedOut = () => {
     // Change route to test
-    const route = Routes.getGameChoice();
+    const route = Routes.getSignIn();
     const pic = images.logo;
     return (
+
         <ExNavigator
             initialRoute={route}
             style={{ flex: 1 }}
-            sceneStyle={{ paddingTop: -25 }}
-            showNavigationBar={route.showNavigationBar}
+            showNavigationBar={false}
         />
 
 

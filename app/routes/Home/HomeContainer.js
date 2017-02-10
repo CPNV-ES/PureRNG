@@ -6,10 +6,11 @@ const HomeContainer = (props) => {
     return (
         <Home
             disconnectOnPress={() => props.navigator.push(Routes.getSignIn())}
-            gameChoiceOnPress={() => props.navigator.push(Routes.getGameChoice())}
+            goRouletteRoomOnPress = {() => props.navigator.push(Routes.getRouletteRoom())}
             />
     );
 };
+
 
 HomeContainer.propTypes = {
     navigator: React.PropTypes.object,
