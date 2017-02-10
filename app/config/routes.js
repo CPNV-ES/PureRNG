@@ -1,11 +1,18 @@
 import React from 'react';
 import Home from '../routes/Home';
 import SignIn from '../routes/SignIn';
+import RouletteView from '../routes/RouletteView';
 
 
 export const routes = {
+    getRouletteRoom() {
+        return {
+            renderScene(navigator) {
+                return <RouletteView navigator={navigator}/>
+            },
+        };
+    },
     getHomeRoute() {
-
         return {
             showNavigationBar:false,
             renderScene(navigator) {
@@ -21,13 +28,6 @@ export const routes = {
             },
         };
     },
-    getRouletteRoom() {
-        return {
-            renderScene(navigator) {
-                return <Roulette navigator={navigator}/>
-            },
-        }
-    }
 
 };
 

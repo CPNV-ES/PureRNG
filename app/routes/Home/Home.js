@@ -26,20 +26,41 @@ const Home = (props) => {
                     onPress={props.disconnectOnPress}
                 />
             </View>
+            <View style={styles.MainViewContent}>
+                <Button
+                    text="test button to go to a roulette room"
+                    onPress={props.goRouletteOnPress}
+                />
+            </View>
         </View>
     );
 };
-/* Accordion part */
-let roulettesRooms;
 
-const SECTIONS = [
+/* test*/
+const SELECTORS = [
+    {
+        title: 'First',
+        value: 0,
+    },
+    {
+        title: 'Third',
+        value: 2,
+    },
+    {
+        title: 'None',
+        value: false,
+    },
+];
+
+/* Accordion part */
+var SECTIONS = [
     {
         title: 'Jackpot',
         content: 'Enter a jackpot room...',
     },
     {
         title: 'Roulettes',
-        content: 'ok',
+        content: 'Go to this roulette',
     }
 ];
 /* Accordion to display game choice */
@@ -57,6 +78,7 @@ class AccordionView extends Component {
 
     _renderContent(section, i, isActive) {
         return (
+
             <Animatable.View
                 duration={300}
                 transition="backgroundColor"
@@ -66,7 +88,11 @@ class AccordionView extends Component {
                     easing="ease-out">
                     {section.content}
                 </Animatable.Text>
+
+
+
             </Animatable.View>
+
         );
     }
 
@@ -81,9 +107,8 @@ class AccordionView extends Component {
     }
 }
 Home.propTypes = {
-    goRouletteRoomOnPress: React.PropTypes.func,
     disconnectOnPress: React.PropTypes.func,
-}
-
+    goRouletteOnPress: React.PropTypes.func,
+};
 
 export default Home;

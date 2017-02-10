@@ -1,5 +1,5 @@
-import RouletteContainer from './RouletteViewContainer';
-import Roulette from './RouletteView';
+import RouletteViewContainer from './RouletteViewContainer';
+import RouletteView from './RouletteView';
 
-export { Roulette };
-export default  RouletteContainer;
+export { RouletteView };
+export default  RouletteViewContainer;

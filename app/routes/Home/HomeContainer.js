@@ -6,7 +6,7 @@ const HomeContainer = (props) => {
     return (
         <Home
             disconnectOnPress={() => props.navigator.push(Routes.getSignIn())}
-            goRouletteRoomOnPress = {() => props.navigator.push(Routes.getRouletteRoom())}
+            goRouletteOnPress={() => props.navigator.push(Routes.getRouletteRoom())}
             />
     );
 };
