@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
-// import AwesomeButton from 'react-native-awesome-button';
 
 const Button = (props) => {
     const { text, onPress } = props;

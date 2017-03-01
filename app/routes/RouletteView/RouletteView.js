@@ -6,22 +6,24 @@ import styles from './styles';
 import Roulette from '../../components/Roulette';
 
 const RouletteView = (props) => {
-    const bg = images.homeBg;
-    let pic = images.logo;
-    // const {onDetailsPress} = props;
+
     return (
 
         <View style={styles.MainView}>
+            <View style={styles.roulettePlaceholder}>
+                <Roulette/>
+                <View style={styles.triangle} />
+                <View style={styles.triangleO} />
+            </View>
 
+            <View>
+                <Text>Balance : oui oui oui coin</Text>
+            </View>
             <Button
                 style={styles.white}
                 text="go back to home"
                 onPress={props.backHome}
             />
-            <View style={styles.MainViewContent}>
-                <Text style={styles.white}>Nice roulette oui oui </Text>
-            </View>
-            <Roulette/>
         </View>
     );
 };

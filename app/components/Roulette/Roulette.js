@@ -1,41 +1,106 @@
-import React,{Component } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import {Layer, Rect, Stage, Group} from 'react-konva';
+import React, {Component} from 'react';
+import { View, Text } from 'react-native';
+import styles from './styles';
+const Roulette = React.createClass({
 
-class MyRect extends React.Component {
-    constructor(...args) {
-        super(...args);
-        this.state = {
-            color: 'green'
-        };
-        this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick() {
-        this.setState({
-            color: Konva.Util.getRandomColor()
-        });
-    }
     render() {
         return (
-            <Rect
-                x={10} y={10} width={50} height={50}
-                fill={this.state.color}
-                shadowBlur={10}
-                onClick={this.handleClick}
-            />
+            <View style={styles.rouletteContainer}>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>1</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>14</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>2</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>13</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>3</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>12</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>4</Text>
+                </View>
+                <View style={styles.greenBox}>
+                    <Text style={styles.Number}>0</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>11</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>5</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>10</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>6</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>9</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>7</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>8</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>1</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>14</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>2</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>13</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>3</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>12</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>4</Text>
+                </View>
+                <View style={styles.greenBox}>
+                    <Text style={styles.Number}>0</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>11</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>5</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>10</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>6</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>9</Text>
+                </View>
+                <View style={styles.redBox}>
+                    <Text style={styles.Number}>7</Text>
+                </View>
+                <View style={styles.blackBox}>
+                    <Text style={styles.Number}>8</Text>
+                </View>
+            </View>
+
         );
-    }
-};
-function Roulette() {
-    // Stage - is a div wrapper
-    // Layer - is a <canvas> element on the page
-    // so you can use several canvases. It may help you to improve performance a lot.
-    return (
-        <Stage width={700} height={700}>
-            <Layer>
-                <MyRect/>
-            </Layer>
-        </Stage>
-    );
-}
+    },
+
+});
+
 export default Roulette;
