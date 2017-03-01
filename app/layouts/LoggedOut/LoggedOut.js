@@ -8,7 +8,7 @@ import Navbar from '../../components/NavBar';
 
 const LoggedOut = () => {
     // Change route to test
-    const route = Routes.getGameChoice();
+    const route = Routes.getSignIn();
     const pic = images.logo;
     return (
         <ExNavigator

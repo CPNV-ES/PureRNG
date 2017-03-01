@@ -1,6 +1,48 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    ChoiceContent:  {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    Signs : {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    SignIn : {
+      marginTop : 100,
+    },
+
+    SignUp : {
+      marginTop : 100,
+    },
+
+    lblSignUp : {
+      width:100,
+    },
+
+    txtSignUp : {
+        height: 40,
+        borderColor: 'gray',
+        borderWidth: 1,
+        width:100,
+    },
+
+    usernameView : {
+        flexDirection: 'row',
+    },
+
+    SignContent : {
+        width : 200,
+    },
+
+    space : {
+      marginLeft:100,
+    },
+
     bgImageWrapper: {
         position: 'absolute',
         top: 0, bottom: 0, left: 0, right: 0
