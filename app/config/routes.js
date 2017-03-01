@@ -1,38 +1,33 @@
 import React from 'react';
 import Home from '../routes/Home';
-import GameChoice from '../routes/GameChoice';
 import SignIn from '../routes/SignIn';
+import RouletteView from '../routes/RouletteView';
 
 
 export const routes = {
+    getRouletteRoom() {
+        return {
+            renderScene(navigator) {
+                return <RouletteView navigator={navigator}/>
+            },
+        };
+    },
     getHomeRoute() {
         return {
+            showNavigationBar:false,
             renderScene(navigator) {
                 return <Home navigator={navigator}/>
             },
-            showNavigationBar: false,
-        };
-    },
-    getGameChoice() {
-        return {
-            renderScene(navigator) {
-                return <GameChoice navigator={navigator}/>
-            },
-            showNavigationBar: false,
+
         };
     },
     getSignIn() {
         return {
-            showNavigationBar:false,
             renderScene(navigator) {
-
                 return <SignIn navigator={navigator}/>
-
             },
-
-
         };
-    }
+    },
 
 };
 
