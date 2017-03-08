@@ -23,7 +23,7 @@ class SignInContainer extends Component {
             <SignIn
                 updateState={this.setState.bind(this)}
                 SignInPress={() => (
-                  fetch('http://10.0.2.2:8887/users/auth', {
+                  fetch('http://172.17.101.184:8887/users/auth', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',
@@ -46,7 +46,7 @@ class SignInContainer extends Component {
                   })
                 )}
                 SignUpPress = {() => (
-                  fetch('http://10.0.2.2:8887/users/signUp', {
+                  fetch('http://172.17.101.184:8887/users/signUp', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',

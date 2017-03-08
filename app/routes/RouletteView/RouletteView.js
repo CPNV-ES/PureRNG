@@ -11,7 +11,7 @@ const RouletteView = (props) => {
 
         <View style={styles.MainView}>
             <View style={styles.roulettePlaceholder}>
-                <Roulette/>
+                <Roulette />
                 <View style={styles.triangle} />
                 <View style={styles.triangleO} />
             </View>
@@ -24,12 +24,19 @@ const RouletteView = (props) => {
                 text="go back to home"
                 onPress={props.backHome}
             />
+            <Button
+                style={styles.white}
+                text="spin dis"
+                onPress={props.spinOnPress}
+                color="#841584"
+            />
         </View>
     );
 };
 
 RouletteView.propTypes = {
     backHome: React.PropTypes.func,
+    spinOnPress: React.PropTypes.func,
 }
 
 
