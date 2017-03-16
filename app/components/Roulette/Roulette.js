@@ -3,20 +3,20 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 
 const Roulette = (props) => {
-
+const NumbersList = [1,14,2,13,3,12,4,0,11,5,10,6,9,7,8];
         this.state = {
             rouletteNumbers:[],
+            arrayMax:15,
         };
-    // rouletteNumbers:[1,14,2,13,3,12,4,0,11,5,10,6,9,7,8,1,14,2,13,3,12,4,0,11,5,10,6,9,7,8]
-        const arrayMax = 30;
-        const limit = 14;
-        for (var i = 0; i < arrayMax; i++) {
-            this.state.rouletteNumbers.push(Math.round(Math.random() * limit))
-        }
 
+        // Generate an array of 30 random numbers between 0 and 14
+
+        for (var i = 0; i < this.state.arrayMax; i++) {
+            this.state.rouletteNumbers.push(9,7,8,1,14,2,13,3,12,4,0,11,5,10,6)
+        }
         return (
 
-            <View style={styles.rouletteContainer}>
+            <View style={styles.full_display}>
                     {/*Foreach to loop on the roulette numbers (times 2 to add some spinning movement) */}
                     {
                         this.state.rouletteNumbers.map((number, key) => {
@@ -24,7 +24,7 @@ const Roulette = (props) => {
                             return (<View style={styles.greenBox} key={key}>
                                 <Text style={styles.Number}>{number}</Text>
                             </View>);
-                            } else if (number % 2 == 0) {
+                            } else if (number <= 7) {
                                 return (<View style={styles.redBox} key={key}>
                                     <Text style={styles.Number}>{number}</Text>
                                 </View>);
@@ -39,9 +39,5 @@ const Roulette = (props) => {
 
         );
 };
-Roulette.propTypes = {
-
-};
-
 
 export default Roulette;

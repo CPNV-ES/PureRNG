@@ -8,22 +8,28 @@ export default StyleSheet.create({
     roulettePlaceholder:{
         marginTop : 20,
         width: 425,
-        height: 48,
+        height: 40,
         marginRight: 10,
         marginBottom: 15,
-        overflow: 'hidden',
         borderWidth: 1.3,
         borderColor: '#3f3f3f',
         justifyContent:'center',
         alignItems: 'center',
+
+    },
+    rouletteContainer:{
+        justifyContent:'center',
+        alignItems: 'center',
+        width:10,
+        overflow: 'hidden',
     },
     triangleO: {
         marginBottom: -5,
         backgroundColor: 'transparent',
         borderStyle: 'solid',
-        borderLeftWidth: 7,
-        borderRightWidth: 7,
-        borderBottomWidth: 14,
+        borderLeftWidth: 5,
+        borderRightWidth: 5,
+        borderBottomWidth: 12,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
         borderBottomColor: '#616161'
@@ -32,21 +38,20 @@ export default StyleSheet.create({
         marginBottom: -20,
         backgroundColor: 'transparent',
         borderStyle: 'solid',
-        borderLeftWidth: 11,
-        borderRightWidth: 11,
+        borderLeftWidth: 10,
+        borderRightWidth: 10,
         borderBottomWidth: 22,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
         borderBottomColor: '#f3f3f3'
     },
     MainViewContent:{
-        flex:2,
+        flex:4,
         flexDirection:'column',
         justifyContent:'center',
         alignItems: 'center',
     },
     white: {
         color: 'white',
-    },
-
+    }
 });

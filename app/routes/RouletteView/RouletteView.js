@@ -1,9 +1,11 @@
 import React from 'react';
-import { Text, View , Image} from 'react-native';
+import { Text, View , Image, TouchableOpacity} from 'react-native';
 import Button from '../../components/Button';
 import images from '../../config/images';
+import { RadioButtons } from 'react-native-radio-buttons'
 import styles from './styles';
 import Roulette from '../../components/Roulette';
+import RouletteStakesChoice from '../../components/RouletteStakesChoice';
 
 const RouletteView = (props) => {
 
@@ -18,6 +20,19 @@ const RouletteView = (props) => {
 
             <View>
                 <Text>Balance : oui oui oui coin</Text>
+            </View>
+            <View style={styles.stakesContainer}>
+                <Text>Bet :</Text>
+                <RouletteStakesChoice/>
+            </View>
+            <View styles={styles.ColorsChoices}>
+
+                <View>
+                    <Text style={styles.aStyle}>
+                        Some text bla bla
+                    </Text>
+                    <TouchableOpacity style={{position:'absolute'}} onPress={()=>{console.log("It works or not?")}}></TouchableOpacity>
+                </View>
             </View>
             <Button
                 style={styles.white}
@@ -37,7 +52,7 @@ const RouletteView = (props) => {
 RouletteView.propTypes = {
     backHome: React.PropTypes.func,
     spinOnPress: React.PropTypes.func,
-}
+};
 
 
 export default RouletteView;

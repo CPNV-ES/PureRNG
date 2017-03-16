@@ -1,70 +1,122 @@
 import React, { Component} from 'react';
 import Roulette from './Roulette';
-import Routes from '../../config/routes';
-import { StyleSheet, View, Animated, TouchableOpacity, Text } from 'react-native';
-import Dimensions from 'Dimensions';
+import { StyleSheet, View, Animated, Easing} from 'react-native';
 import rouletteEvents from '../../utils/RouletteViewEvents';
-
-const {
-    width,
-    height
-} = Dimensions.get('window');
-
-const SQUARE_DIMENSIONS = 30;
-const SPRING_CONFIG = {tension: 2, friction: 3}; //Soft spring
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-
-});
+import styles from './styles';
 
 
-class RouletteContainer extends React.Component {
+
+
+class RouletteContainer extends Component {
+
     constructor (props) {
         super(props);
-        this.state = {pan: new Animated.ValueXY()};
+
+        // Set the animation container
+        this.state = {
+            spinValue: new Animated.Value(1),
+            finalSpinValue:0,
+        };
+
         this.spinOnPress = this.spinOnPress.bind(this);
+        // callback to access the method outside of the roulette component
         rouletteEvents.setSpinEvents(this.spinOnPress);
     }
-
-    spinOnPress() {
-        // Animate the update
-        this.triggerAnimation();
-        // this.setState({w: this.state.w + 15, h: this.state.h + 15})
+    getNumber() {
+        return fetch('http://172.17.101.184:8887/roulette/getResult')
+            .then((response) => response.json()).then((responseJson) => {
+                return responseJson;
+        });
     }
+
+    // TODO : not onpress but time based (in the room)
+    spinOnPress() {
+        const self = this;
+        // 1.the server gives us the randomly generetad number
+        // 2. We set the SpinValue regarding this random number
+        // 3. We Animate the wheel
+        this.getNumber().then(function(number){
+            self.setSpinValue(number);
+            self.triggerAnimation();
+        });
+    }
+    componentDidMount() {
+        this._interval = setInterval(() => {
+            // Your code
+        }, 5000);
+    }
+
+
+    // Each number has a different position
+    // (each is in a 40x40 square)
+    setSpinValue(nb) {
+        const NumbersValue = {
+            9: 405,
+            7: 365,
+            8: 325,
+            1: 285,
+            14: 245,
+            2: 205,
+            13: 165,
+            3: 125,
+            12: 85,
+            4: 45,
+            0: 0,
+            11: -45,
+            5: -85,
+            10: -125,
+            6: -165,
+        };
+
+        this.setState({
+            finalSpinValue:NumbersValue[nb],
+        })
+
+    };
     triggerAnimation(cb){
         Animated.sequence([
-            Animated.spring(this.state.pan, {
-                ...SPRING_CONFIG,
-                toValue: {x: width - SQUARE_DIMENSIONS, y: height - SQUARE_DIMENSIONS} // animated to bottom right
-            }),
-            Animated.spring(this.state.pan, {
-                ...SPRING_CONFIG,
-                toValue: {x: width - SQUARE_DIMENSIONS, y: 0} //animate to top right
-            }),
-            Animated.spring(this.state.pan, {
-                ...SPRING_CONFIG,
-                toValue: {x: 0, y: 0} // return to start
-            })
+            Animated.timing(
+            // Animate 4000 pixels to make the animation smoother
+                this.state.spinValue,
+                {
+                    toValue:-4000,
+                    easing: Easing.in(Easing.ease),
+                    duration:2000
+                }),
+            // To the random number
+            Animated.timing(
+                this.state.spinValue,
+                {
+                    toValue:this.state.finalSpinValue,
+                    duration:1000,
+                    easing: Easing.out(Easing.ease)
+                })
         ]).start(cb);
     }
-    getStyle() {
+    componentWillUnmount() {
+        clearInterval(this._interval);
+    }
+    // Apply this style to the container of the roulette
+    getStyle(){
         return [
-            styles.square,
+            styles.container,
             {
-                transform: this.state.pan.getTranslateTransform()
+                transform : [
+                    {
+                        translateX:this.state.spinValue
+                    },
+                ],
+                width : 8050,
             }
-        ];
+        ]
     }
     render() {
 
         return (
-            <View style={styles.container}>
+            <Animated.View style={this.getStyle()}>
+                <Roulette style={{resizeMode: 'cover'}}/>
+            </Animated.View>
 
-                <Animated.View style={this.getStyle()} />
-                <Roulette/>
-            </View>
         );
 
     }
