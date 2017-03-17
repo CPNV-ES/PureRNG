@@ -6,10 +6,9 @@ export default StyleSheet.create({
         backgroundColor:'#474747',
     },
     roulettePlaceholder:{
-        marginTop : 20,
-        width: 425,
+        marginTop : 35,
+        alignSelf: 'stretch',
         height: 40,
-        marginRight: 10,
         marginBottom: 15,
         borderWidth: 1.3,
         borderColor: '#3f3f3f',

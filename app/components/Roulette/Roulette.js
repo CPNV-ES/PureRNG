@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import styles from './styles';
 
 const Roulette = (props) => {
-const NumbersList = [1,14,2,13,3,12,4,0,11,5,10,6,9,7,8];
         this.state = {
             rouletteNumbers:[],
             arrayMax:15,

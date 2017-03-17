@@ -4,7 +4,7 @@ import styles from './styles';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { RadioButtons } from 'react-native-radio-buttons'
 
-class RouletteStakesChoice extends Component {
+class RouletteColorsChoice extends Component {
 
     constructor (props) {
         super(props);
@@ -12,10 +12,9 @@ class RouletteStakesChoice extends Component {
         // Set the animation container
         this.state = {
             options : [
-                10,
-                20,
-                50,
-                100
+                "Red",
+                "Green",
+                "Black"
             ],
         };
 
@@ -26,27 +25,48 @@ class RouletteStakesChoice extends Component {
     }
 
     renderOption(option, selected, onSelect, index) {
-        const style = selected ? {fontWeight: 'bold'} : {};
+        const style = selected ? {fontWeight: 'bold', color:'white'} : {color:'white'};
+        if (index == 0) {
+            return (
 
-        return (
-            <View style={styles.stake}>
                 <TouchableWithoutFeedback onPress={onSelect} key={index}>
-                    <View>
+                    <View style={styles.redContainer}>
                         <Text style={style}>{option}</Text>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
-        );
+
+            );
+        } else if (index == 1) {
+            return (
+
+                <TouchableWithoutFeedback onPress={onSelect} key={index}>
+                    <View style={styles.greenContainer}>
+                        <Text style={style}>{option}</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+
+            );
+        } else if (index == 2) {
+            return (
+
+                <TouchableWithoutFeedback onPress={onSelect} key={index}>
+                    <View style={styles.blackContainer}>
+                        <Text style={style}>{option}</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+            );
+        }
+
     }
 
     renderContainer(optionNodes){
-        return <View style={styles.stakesContainer}>{optionNodes}</View>;
+        return <View style={styles.ColorsContainer}>{optionNodes}</View>;
     }
 
     render() {
 
         return (
-            <View style={styles.stakesContainer}>
+            <View style={styles.ColorsContainer}>
                 <RadioButtons
                     options={ this.state.options }
                     onSelection={ this.setSelectedOption.bind(this) }
@@ -54,10 +74,9 @@ class RouletteStakesChoice extends Component {
                     renderOption={ this.renderOption }
                     renderContainer={ this.renderContainer }
                 />
-                <Text>Selected option: {this.props.value || 'none'}</Text>
             </View>
         );
     }
 };
 
-export default RouletteStakesChoice;
+export default RouletteColorsChoice;

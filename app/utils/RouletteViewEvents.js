@@ -1,6 +1,10 @@
 class RouletteViewEvents {
 
     static spinMethod;
+    static selectStakeMethod;
+    static selectColorMethod;
+    static color;
+
 
     static setSpinEvents(spin){
         RouletteViewEvents.spinMethod = spin;
@@ -8,6 +12,13 @@ class RouletteViewEvents {
 
     static spinTrigger() {
         if(RouletteViewEvents.spinMethod) RouletteViewEvents.spinMethod();
+    }
+    static setColor(color) {
+        RouletteViewEvents.color = color;
+    }
+
+    static getColor() {
+        return RouletteViewEvents.color;
     }
 
 }

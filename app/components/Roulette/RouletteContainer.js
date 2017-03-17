@@ -32,7 +32,7 @@ class RouletteContainer extends Component {
     // TODO : not onpress but time based (in the room)
     spinOnPress() {
         const self = this;
-        // 1.the server gives us the randomly generetad number
+        // 1.the server gives us the randomly generated number
         // 2. We set the SpinValue regarding this random number
         // 3. We Animate the wheel
         this.getNumber().then(function(number){
@@ -122,9 +122,5 @@ class RouletteContainer extends Component {
     }
 };
 
-
-RouletteContainer.propTypes = {
-    spinOnPress: React.PropTypes.func,
-};
 
 export default RouletteContainer;

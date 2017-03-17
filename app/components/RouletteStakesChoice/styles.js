@@ -11,13 +11,11 @@ stake: {
         borderWidth: 0.5,
         justifyContent:'center',
         alignItems: 'center',
-},
+    },
     stakesContainer: {
         height: 40,
         marginRight: 10,
         flexDirection:'row',
 
     }
-
-
 });
