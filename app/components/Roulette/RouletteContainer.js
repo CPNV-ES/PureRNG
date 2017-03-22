@@ -122,5 +122,8 @@ class RouletteContainer extends Component {
     }
 };
 
+RouletteContainer.propTypes = {
+    spinOnPress: React.PropTypes.func,
+};
 
 export default RouletteContainer;
