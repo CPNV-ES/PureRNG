@@ -22,6 +22,7 @@ const RouletteView = (props) => {
                 <Text>Balance : oui oui oui coin</Text>
             </View>
             <Text>Bet :</Text>
+            <Text>{props.betValue} ON {props.betColor}</Text>
             <RouletteStakesChoice
                 onChange={props.onStakeChange}
                 value={props.stakeChoice}
@@ -34,11 +35,15 @@ const RouletteView = (props) => {
 
             </View>
             <View>
+                {props.stakeChoice && props.colorChoice ? (
                 <Text>You chose {props.stakeChoice} on {props.colorChoice} </Text>
+                ) : (
+                    <Text>You didn't chose anything</Text>
+                )}
                 <Button
                     style={styles.white}
                     text="BET"
-                    onPress={props.bet}
+                    onPress={props.betOnPress}
                 />
                 <Button
                     style={styles.white}
@@ -63,7 +68,9 @@ RouletteView.propTypes = {
     colorChoice: React.PropTypes.string,
     onStakeChange: React.PropTypes.func,
     onColorChange: React.PropTypes.func,
-    bet: React.PropTypes.func,
+    betOnPress: React.PropTypes.func,
+    betValue:React.PropTypes.number,
+    betColor:React.PropTypes.string,
 };
 
 

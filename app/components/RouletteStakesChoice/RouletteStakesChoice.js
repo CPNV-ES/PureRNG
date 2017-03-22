@@ -29,8 +29,8 @@ class RouletteStakesChoice extends Component {
         const style = selected ? {fontWeight: 'bold'} : {};
 
         return (
-            <View style={styles.stake}>
-                <TouchableWithoutFeedback onPress={onSelect} key={index}>
+            <View style={styles.stake} key={index}>
+                <TouchableWithoutFeedback onPress={onSelect} >
                     <View>
                         <Text style={style}>{option}</Text>
                     </View>
@@ -48,6 +48,7 @@ class RouletteStakesChoice extends Component {
         return (
             <View style={styles.stakesContainer}>
                 <RadioButtons
+
                     options={ this.state.options }
                     onSelection={ this.setSelectedOption.bind(this) }
                     selectedOption={this.props.value }
