@@ -1,6 +1,9 @@
 package com.purerng;
 
 import com.facebook.react.ReactActivity;
+import com.bitgo.randombytes.RandomBytesPackage;
+import com.github.yamill.orientation.OrientationPackage;
+import com.github.yamill.orientation.OrientationPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.github.yamill.orientation.OrientationPackage;

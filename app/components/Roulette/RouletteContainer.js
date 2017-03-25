@@ -24,20 +24,21 @@ class RouletteContainer extends Component {
     }
     getNumber() {
         return fetch('http://172.17.101.184:8887/roulette/getResult')
-            .then((response) => response.json()).then((responseJson) => {
-                return responseJson;
-        });
+            .then((response) => response.json());
     }
 
     // TODO : not onpress but time based (in the room)
     spinOnPress() {
-        const self = this;
+
         // 1.the server gives us the randomly generated number
         // 2. We set the SpinValue regarding this random number
         // 3. We Animate the wheel
-        this.getNumber().then(function(number){
-            self.setSpinValue(number);
-            self.triggerAnimation();
+        this.getNumber().then((number) => {
+            this.setSpinValue(number);
+            this.triggerAnimation(() => {
+                console.warn('NICE THIS '+number);
+
+            });
         });
     }
     componentDidMount() {
@@ -90,7 +91,8 @@ class RouletteContainer extends Component {
                     toValue:this.state.finalSpinValue,
                     duration:1000,
                     easing: Easing.out(Easing.ease)
-                })
+                }),
+
         ]).start(cb);
     }
     componentWillUnmount() {

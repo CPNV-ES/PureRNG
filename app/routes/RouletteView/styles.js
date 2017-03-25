@@ -3,13 +3,13 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     MainView:{
         flex:1,
-        backgroundColor:'#474747',
+        backgroundColor:'#616161',
     },
     roulettePlaceholder:{
-        marginTop : 35,
+        marginTop : 5,
         alignSelf: 'stretch',
-        height: 40,
-        marginBottom: 15,
+        height: 43,
+        marginBottom: 5,
         borderWidth: 1.3,
         borderColor: '#3f3f3f',
         justifyContent:'center',
@@ -51,6 +51,13 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     white: {
-        color: 'white',
+        color: '#fff',
+        fontWeight: '100',
+        fontFamily:'sans-serif-light',
+    },
+    titles: {
+        flexDirection:'row',
+        alignItems: 'stretch',
+        justifyContent:'space-between',
     }
 });

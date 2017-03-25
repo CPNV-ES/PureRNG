@@ -25,7 +25,7 @@ class RouletteColorsChoice extends Component {
     }
 
     renderOption(option, selected, onSelect, index) {
-        const style = selected ? {fontWeight: 'bold', color:'white'} : {color:'white'};
+        const style = selected ? {fontWeight: '900', color:'#424242'} : {color:'white', };
         if (index == 0) {
             return (
 

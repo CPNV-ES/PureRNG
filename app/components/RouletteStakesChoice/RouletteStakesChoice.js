@@ -26,16 +26,19 @@ class RouletteStakesChoice extends Component {
     }
 
     renderOption(option, selected, onSelect, index) {
-        const style = selected ? {fontWeight: 'bold'} : {};
+        const style = selected ? {fontWeight: 'bold'} : {
+            color: '#fff',
+            fontFamily:'sans-serif-light',
+        };
 
         return (
-            <View style={styles.stake} key={index}>
-                <TouchableWithoutFeedback onPress={onSelect} >
-                    <View>
-                        <Text style={style}>{option}</Text>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
+
+            <TouchableWithoutFeedback onPress={onSelect} key={index} >
+                <View style={styles.stake} >
+                    <Text style={style}>{option}</Text>
+                </View>
+            </TouchableWithoutFeedback>
+
         );
     }
 
@@ -55,7 +58,6 @@ class RouletteStakesChoice extends Component {
                     renderOption={ this.renderOption }
                     renderContainer={ this.renderContainer }
                 />
-                <Text>Selected option: {this.props.value || 'none'}</Text>
             </View>
         );
     }

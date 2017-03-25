@@ -11,11 +11,18 @@ stake: {
         borderWidth: 0.5,
         justifyContent:'center',
         alignItems: 'center',
+        borderColor: '#fff',
+
     },
     stakesContainer: {
         height: 40,
-        marginRight: 10,
+        margin:7,
         flexDirection:'row',
 
+    },
+    white: {
+        color: '#fff',
+        fontWeight: '100',
+        fontFamily:'sans-serif-light',
     }
 });

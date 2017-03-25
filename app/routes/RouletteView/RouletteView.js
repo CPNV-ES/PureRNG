@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View , Image, TouchableOpacity } from 'react-native';
+import { Text, View , Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Button from '../../components/Button';
 import images from '../../config/images';
 import { RadioButtons } from 'react-native-radio-buttons'
@@ -9,42 +9,41 @@ import RouletteStakesChoice from '../../components/RouletteStakesChoice';
 import RouletteColorsChoice from '../../components/RouletteColorsChoice';
 const RouletteView = (props) => {
 
+
     return (
 
         <View style={styles.MainView}>
+            <Text style={styles.white}>Latest rolls : </Text>
             <View style={styles.roulettePlaceholder}>
                 <Roulette />
                 <View style={styles.triangle} />
                 <View style={styles.triangleO} />
             </View>
 
-            <View>
-                <Text>Balance : oui oui oui coin</Text>
+            <View style={styles.titles}>
+                <Text style={styles.white}>Balance : {props.currentBalance} coins</Text>
+                <Text style={styles.white}>Next roll in X Seconds</Text>
             </View>
-            <Text>Bet :</Text>
-            <Text>{props.betValue} ON {props.betColor}</Text>
+
+
             <RouletteStakesChoice
                 onChange={props.onStakeChange}
                 value={props.stakeChoice}
             />
+
+
             <View style={{marginTop: 10, marginBottom:45}}>
                 <RouletteColorsChoice
                     onChange={props.onColorChange}
                     value={props.colorChoice}
                 />
 
+
+
             </View>
-            <View>
-                {props.stakeChoice && props.colorChoice ? (
-                <Text>You chose {props.stakeChoice} on {props.colorChoice} </Text>
-                ) : (
-                    <Text>You didn't chose anything</Text>
-                )}
-                <Button
-                    style={styles.white}
-                    text="BET"
-                    onPress={props.betOnPress}
-                />
+            <View style={{justifyContent:'center', alignItems: 'center',}}>
+                    <Text style={styles.white} >Place your bets !</Text>
+
                 <Button
                     style={styles.white}
                     text="go back to home"
@@ -56,6 +55,18 @@ const RouletteView = (props) => {
                     onPress={props.spinOnPress}
                     color="#841584"
                 />
+                <Button
+                    style={styles.white}
+                    text="BET NOW !"
+                    onPress={props.betOnPress}
+                />
+                <Text style={styles.white}>Current bet :</Text>
+                {props.betValue !== undefined && props.betColor !== undefined || props.betValue == null && props.betColor == null || props.betColor !== 'None selected' ? (
+                    <Text style={styles.white}>{props.betValue} ON {props.betColor}</Text>
+
+                ) : (
+                    <Text style={styles.white}>no current bet</Text>
+                )}
             </View>
         </View>
     );
@@ -66,6 +77,7 @@ RouletteView.propTypes = {
     spinOnPress: React.PropTypes.func,
     stakeChoice: React.PropTypes.number,
     colorChoice: React.PropTypes.string,
+    currentBalance: React.PropTypes.number,
     onStakeChange: React.PropTypes.func,
     onColorChange: React.PropTypes.func,
     betOnPress: React.PropTypes.func,
