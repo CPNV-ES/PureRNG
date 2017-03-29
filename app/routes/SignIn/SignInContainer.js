@@ -3,10 +3,13 @@ import SignIn from './SignIn';
 import Routes from '../../config/routes';
 import AsyncStorage from 'AsyncStorage';
 
+/**
+ * Handles sign-in via server authentication
+ * (jwt token)
+ */
 class SignInContainer extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             signUpUsername: '',
             signUpPassword: '',
@@ -16,14 +19,13 @@ class SignInContainer extends Component {
         };
     }
 
-
     render(){
 
         return (
             <SignIn
                 updateState={this.setState.bind(this)}
                 SignInPress={() => (
-                  fetch('http://localhost:8887/users/auth', {
+                  fetch('http://172.17.101.184:8887/auth', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',
@@ -46,7 +48,7 @@ class SignInContainer extends Component {
                   })
                 )}
                 SignUpPress = {() => (
-                  fetch('http://localhost:8887/users/signUp', {
+                  fetch('http://172.17.101.184:8887/users', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',

@@ -1,9 +1,7 @@
 // Entry point of the application
-// Index.ios.js and index.android.js will require this file and boom
+// Index.ios.js and index.android.js will require this file
 import React from 'react';
 import LoggedOut from './layouts/LoggedOut';
-
-// CONNECT ....
 
 const PureRNGapp = (props) => {
     const { status, user, loggingIn } = props;

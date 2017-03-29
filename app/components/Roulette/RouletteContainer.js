@@ -5,34 +5,44 @@ import rouletteEvents from '../../utils/RouletteViewEvents';
 import styles from './styles';
 
 
-
+/**
+ *  Set the animation container - default animation value
+ *  finalSpinValue will be the value where to wheel stops
+ */
 
 class RouletteContainer extends Component {
 
     constructor (props) {
         super(props);
 
-        // Set the animation container
         this.state = {
             spinValue: new Animated.Value(1),
             finalSpinValue:0,
         };
 
         this.spinOnPress = this.spinOnPress.bind(this);
-        // callback to access the method outside of the roulette component
+
         rouletteEvents.setSpinEvents(this.spinOnPress);
     }
+
+    /**
+     * Get random number provably fair from API
+     * @returns {Promise.<U>|*|Promise.<TResult>}
+     */
     getNumber() {
-        return fetch('http://172.17.101.184:8887/roulette/getResult')
+        return fetch('http://10.0.2.2:8887/roulette/getResult')
             .then((response) => response.json());
     }
 
+    /**
+     *  1.the server gives us the randomly generated number
+     *  2. We set the SpinValue regarding this random number
+     *  3. We Animate the wheel
+     */
     // TODO : not onpress but time based (in the room)
     spinOnPress() {
 
-        // 1.the server gives us the randomly generated number
-        // 2. We set the SpinValue regarding this random number
-        // 3. We Animate the wheel
+
         this.getNumber().then((number) => {
             this.setSpinValue(number);
             this.triggerAnimation(() => {
@@ -41,15 +51,13 @@ class RouletteContainer extends Component {
             });
         });
     }
-    componentDidMount() {
-        this._interval = setInterval(() => {
-            // Your code
-        }, 5000);
-    }
 
+    /**
+     * Each number has a different position
+     *   (each is in a 40x40 square)
+     * @param nb
+     */
 
-    // Each number has a different position
-    // (each is in a 40x40 square)
     setSpinValue(nb) {
         const NumbersValue = {
             9: 405,
@@ -69,22 +77,27 @@ class RouletteContainer extends Component {
             6: -165,
         };
 
+
         this.setState({
             finalSpinValue:NumbersValue[nb],
         })
 
     };
+
+
+    /**
+     * Begin spin animation
+     * @param cb
+     */
     triggerAnimation(cb){
         Animated.sequence([
             Animated.timing(
-            // Animate 4000 pixels to make the animation smoother
                 this.state.spinValue,
                 {
                     toValue:-4000,
                     easing: Easing.in(Easing.ease),
                     duration:2000
                 }),
-            // To the random number
             Animated.timing(
                 this.state.spinValue,
                 {
@@ -95,10 +108,10 @@ class RouletteContainer extends Component {
 
         ]).start(cb);
     }
-    componentWillUnmount() {
-        clearInterval(this._interval);
-    }
-    // Apply this style to the container of the roulette
+
+    /**
+     * Apply style to roulette container
+     */
     getStyle(){
         return [
             styles.container,
@@ -112,8 +125,8 @@ class RouletteContainer extends Component {
             }
         ]
     }
-    render() {
 
+    render() {
         return (
             <Animated.View style={this.getStyle()}>
                 <Roulette style={{resizeMode: 'cover'}}/>

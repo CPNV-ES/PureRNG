@@ -3,8 +3,11 @@ import { Image } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
 import ExNavigator from '@exponent/react-native-navigator';
 import Routes from '../../config/routes';
-import images from '../../config/images';
 import styles from './styles';
+
+//
+// Layout displayed when the user is logged in
+//
 
 class LoggedIn extends React.Component {
     constructor(props) {
@@ -13,6 +16,7 @@ class LoggedIn extends React.Component {
             selectedTab: 'Home',
         };
     }
+
 
     renderTabItem(title, initialRoute, Icon) {
         const { selectedTab } = this.state;

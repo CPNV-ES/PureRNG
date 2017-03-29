@@ -4,6 +4,12 @@ import Button from '../../components/Button';
 import images from '../../config/images';
 import styles from './styles';
 
+/**
+ * Signin page display
+ * @param props
+ * @returns {XML}
+ * @constructor
+ */
 const SignIn = (props) => {
     const bg = images.homeBg;
     let pic = images.logo;
@@ -20,9 +26,7 @@ const SignIn = (props) => {
             <View style={styles.bgImageWrapper}>
                 <Image source={bg} style={styles.backgroundImage} />
             </View>
-
             <View style={styles.Signs}>
-
                 <View style={styles.usernameView}>
                     <Text style={styles.lblSignUp}>
                         Username :
@@ -32,7 +36,6 @@ const SignIn = (props) => {
                         onChangeText={(signInUsername) => updateState({signInUsername})}
                     />
                 </View>
-
                 <View style={styles.usernameView}>
                     <Text style={styles.lblSignUp}>
                         Password :
@@ -42,7 +45,6 @@ const SignIn = (props) => {
                                onChangeText={(signInPassword) => updateState({signInPassword})}
                     />
                 </View>
-
                 <Button
                     title="Send"
                     text="Sign in"
@@ -50,9 +52,7 @@ const SignIn = (props) => {
                 />
             </View>
 
-
             <View style={styles.Signs}>
-
                 <View style={styles.usernameView}>
                     <Text style={styles.lblSignUp}>
                         Username :
@@ -62,7 +62,6 @@ const SignIn = (props) => {
                         onChangeText={(signUpUsername) => updateState({signUpUsername})}
                     />
                 </View>
-
                 <View style={styles.usernameView}>
                     <Text style={styles.lblSignUp}>
                         Password :
@@ -72,20 +71,20 @@ const SignIn = (props) => {
                                onChangeText={(signUpPassword) => updateState({signUpPassword})}
                     />
                 </View>
-                    <Button
-                        title="Send"
-                        text="Sign up"
-                        onPress={props.SignUpPress}
-                    />
+                <Button
+                    title="Send"
+                    text="Sign up"
+                    onPress={props.SignUpPress}
+                />
             </View>
 
             <View style={styles.logcontent}>
-            <View style={styles.MainViewContent}>
-                <Text>Sign in page - you are disconnected </Text>
-                <Button
-                    text="tap here to connect"
-                    onPress={props.SignInPress}
-                />
+                <View style={styles.MainViewContent}>
+                    <Text>Sign in page - you are disconnected </Text>
+                    <Button
+                        text="tap here to connect"
+                        onPress={props.SignInPress}
+                    />
                 </View>
             </View>
         </View>

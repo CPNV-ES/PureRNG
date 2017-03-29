@@ -1,15 +1,17 @@
 import React, { Component} from 'react';
-import rouletteEvents from '../../utils/RouletteViewEvents';
 import styles from './styles';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { RadioButtons } from 'react-native-radio-buttons'
+
+
+/**
+ * Display of the radio buttons to chose on which color to bet
+ */
 
 class RouletteColorsChoice extends Component {
 
     constructor (props) {
         super(props);
-
-        // Set the animation container
         this.state = {
             options : [
                 "Red",
@@ -20,10 +22,23 @@ class RouletteColorsChoice extends Component {
 
     }
 
+    // Bindings onchange
     setSelectedOption(selectedOption) {
         this.props.onChange(selectedOption);
     }
 
+
+
+
+    /**
+     * Render options for each button
+     * 3 possibilities in total
+     * @param option
+     * @param selected
+     * @param onSelect
+     * @param index
+     * @returns {XML}
+     */
     renderOption(option, selected, onSelect, index) {
         const style = selected ? {fontWeight: '900', color:'#424242'} : {color:'white', };
         if (index == 0) {
@@ -59,6 +74,12 @@ class RouletteColorsChoice extends Component {
 
     }
 
+
+    /**
+     * Container of the 3 colors button choices
+     * @param optionNodes
+     * @returns {XML}
+     */
     renderContainer(optionNodes){
         return <View style={styles.ColorsContainer}>{optionNodes}</View>;
     }

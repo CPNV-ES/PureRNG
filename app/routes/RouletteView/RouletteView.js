@@ -1,17 +1,20 @@
 import React from 'react';
 import { Text, View , Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Button from '../../components/Button';
-import images from '../../config/images';
-import { RadioButtons } from 'react-native-radio-buttons'
 import styles from './styles';
 import Roulette from '../../components/Roulette';
 import RouletteStakesChoice from '../../components/RouletteStakesChoice';
 import RouletteColorsChoice from '../../components/RouletteColorsChoice';
+
+/**
+ * Display of a roulette room
+ * @param props
+ * @returns {XML}
+ * @constructor
+ */
 const RouletteView = (props) => {
 
-
     return (
-
         <View style={styles.MainView}>
             <Text style={styles.white}>Latest rolls : </Text>
             <View style={styles.roulettePlaceholder}>
@@ -25,12 +28,10 @@ const RouletteView = (props) => {
                 <Text style={styles.white}>Next roll in X Seconds</Text>
             </View>
 
-
             <RouletteStakesChoice
                 onChange={props.onStakeChange}
                 value={props.stakeChoice}
             />
-
 
             <View style={{marginTop: 10, marginBottom:45}}>
                 <RouletteColorsChoice
@@ -38,12 +39,9 @@ const RouletteView = (props) => {
                     value={props.colorChoice}
                 />
 
-
-
             </View>
             <View style={{justifyContent:'center', alignItems: 'center',}}>
-                    <Text style={styles.white} >Place your bets !</Text>
-
+                <Text style={styles.white} >Place your bets !</Text>
                 <Button
                     style={styles.white}
                     text="go back to home"

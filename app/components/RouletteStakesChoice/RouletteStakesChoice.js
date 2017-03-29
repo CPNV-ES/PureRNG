@@ -1,9 +1,11 @@
 import React, { Component} from 'react';
-import rouletteEvents from '../../utils/RouletteViewEvents';
 import styles from './styles';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import { RadioButtons } from 'react-native-radio-buttons'
 
+/**
+ * Display of the radio button to chose the amount to bet
+ */
 class RouletteStakesChoice extends Component {
 
     constructor (props) {
@@ -21,10 +23,19 @@ class RouletteStakesChoice extends Component {
 
     }
 
+    // Bindings
     setSelectedOption(selectedOption) {
         this.props.onChange(selectedOption);
     }
 
+    /**
+     * Btn option for each btn
+     * @param option
+     * @param selected
+     * @param onSelect
+     * @param index
+     * @returns {XML}
+     */
     renderOption(option, selected, onSelect, index) {
         const style = selected ? {fontWeight: 'bold'} : {
             color: '#fff',
@@ -42,6 +53,11 @@ class RouletteStakesChoice extends Component {
         );
     }
 
+    /**
+     * Container of all the stakes buttons
+     * @param optionNodes
+     * @returns {XML}
+     */
     renderContainer(optionNodes){
         return <View style={styles.stakesContainer}>{optionNodes}</View>;
     }

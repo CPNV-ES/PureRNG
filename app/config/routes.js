@@ -4,11 +4,16 @@ import SignIn from '../routes/SignIn';
 import RouletteView from '../routes/RouletteView';
 
 
+/**
+ *  using the renderScene method along the the navigator props
+ Manage the different views of the application
+ * @type {{getRouletteRoom: ((roomNumber, userId)), getHomeRoute: (()), getSignIn: (())}}
+ */
 export const routes = {
-    getRouletteRoom() {
+    getRouletteRoom(roomNumber, userId) {
         return {
             renderScene(navigator) {
-                return <RouletteView navigator={navigator}/>
+                return <RouletteView userId={userId} roomNumber={roomNumber} navigator={navigator}/>
             },
         };
     },

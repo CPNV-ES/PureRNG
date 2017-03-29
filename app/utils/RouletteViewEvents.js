@@ -1,3 +1,7 @@
+/**
+ * Observer-like
+ * (for testing purpose only)
+ */
 class RouletteViewEvents {
 
     static spinMethod;

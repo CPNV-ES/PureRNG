@@ -22,6 +22,15 @@ export default StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
         alignItems: 'center',
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    roomsDisplay:{
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 
 });
