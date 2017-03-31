@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SignIn from './SignIn';
 import Routes from '../../config/routes';
 import AsyncStorage from 'AsyncStorage';
+import settings from '../../config/settings';
 
 /**
  * Handles sign-in via server authentication
@@ -25,7 +26,7 @@ class SignInContainer extends Component {
             <SignIn
                 updateState={this.setState.bind(this)}
                 SignInPress={() => (
-                  fetch('http://172.17.101.184:8887/auth', {
+                  fetch(settings.server+'auth', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',
@@ -48,7 +49,7 @@ class SignInContainer extends Component {
                   })
                 )}
                 SignUpPress = {() => (
-                  fetch('http://172.17.101.184:8887/users', {
+                  fetch(settings.server+'users', {
                     method: 'POST',
                     headers: {
                       'Accept': 'application/json',

@@ -2,6 +2,7 @@ import React from 'react';
 import ExNavigator from '@exponent/react-native-navigator';
 import Routes from '../../config/routes';
 import { Text, View, Image } from 'react-native';
+import AsyncStorage from 'AsyncStorage';
 
 /**
  * LoggedOut display

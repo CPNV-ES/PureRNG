@@ -5,7 +5,7 @@ import rouletteEvents from "../../utils/RouletteViewEvents";
 import {ToastAndroid, Text, TouchableHighlight, View} from "react-native";
 import AsyncStorage from 'AsyncStorage';
 import SocketIOClient from 'socket.io-client/dist/socket.io';
-
+import settings from '../../config/settings';
 
 /**
  * Handles betting / stake choice / color choice / balance
@@ -16,6 +16,7 @@ class RouletteViewContainer extends Component {
         this.state = {
             stake: null,
             color: 'None selected',
+            disabled:false,
             result: null,
             bet: {},
             user: {},
@@ -24,11 +25,6 @@ class RouletteViewContainer extends Component {
     }
 
     componentWillMount(){
-        this.getUserinfo().then((id) => {
-            this.setUserInfos(id);
-        });
-
-
         this.getCurrentBalance().then((balance) => {
             this.setState(s => ({
                 user : {
@@ -38,8 +34,60 @@ class RouletteViewContainer extends Component {
             }));
         });
 
-        this.socket =  SocketIOClient('http://172.17.101.184:8877');
-        this.socket.emit('joinRoom', this.props.roomNumber, this.props.userId);
+        /**
+         * Connect to the room
+         */
+        this.socket =  SocketIOClient(settings.socket+"1");
+
+        /**
+         * Room joined
+         */
+        this.socket.emit('joinRoom', this.props.roomNumber, this.props.user.name);
+
+
+
+        /**
+         * Activate bet (begining of the 60 sec session)
+         */
+        this.socket.on('activateBet', () => {
+            console.warn('activatebet');
+            this.setState({
+                disabled:false,
+            })
+        });
+
+
+        /**
+         * Stop the bet ( 52sec into the room )
+         */
+        this.socket.on('stopBet', () => {
+            console.warn('stopbet');
+            this.setState({
+                disabled:true,
+            })
+        });
+
+        /**
+         * Spin the roulette with the random given number
+         */
+        this.socket.on('startRoulette', (randomNumber) => {
+            console.warn('startroulette');
+            rouletteEvents.spinTrigger(randomNumber);
+        });
+
+        /**
+         * Update the balance after bet
+         */
+        this.socket.on('updateBalance', (amount) => {
+            console.warn('updateBalance');
+            this.setState(s => ({
+                user : {
+                    ...s.user,
+                    balance:amount,
+                }
+            }));
+        });
+
 
     }
     componentWillUnmount(){
@@ -56,18 +104,28 @@ class RouletteViewContainer extends Component {
                 bet: {
                     value: this.state.stake,
                     color: this.state.color,
-                }
-            }
-            , () => {
-                this.betToast();
-            },
-            this.setState({
+                },
                 user: {
-                    balance: this.state.user.balance - (this.state.stake),
+                    balance: this.state.user.balance,
                 }
-            }),() => {
-                this.betRequest();
-            })
+            },
+            () => {
+                if (this.state.user.balance > this.state.stake) {
+                    this.setState({
+                        user: {
+                            balance: this.state.user.balance - (this.state.stake),
+                        }
+                    });
+                    this.betToast();
+                    this.betRequest();
+                } else {
+                ToastAndroid.showWithGravity(
+                    'not enough balance ',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.CENTER,
+                )}
+            }
+            )
     }
 
 
@@ -75,26 +133,7 @@ class RouletteViewContainer extends Component {
      * Bet request towards API
      */
     betRequest(){
-        fetch('http://172.17.101.184:8887/roulette/bet', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                stake: this.state.bet.value,
-                color: this.state.bet.color,
-            }),
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                if (responseJson != null){
-                    console.warn(responseJson);
-                }
-            })
-            .catch(err => {
-                throw err;
-            })
+        this.socket.emit('bet',this.props.user.id, this.state.bet.value, this.state.bet.color);
     }
 
     /**
@@ -136,35 +175,13 @@ class RouletteViewContainer extends Component {
         this.setState({ color });
     }
 
-
-    /**
-     * Get user id from token
-     * @returns {*|token of current user}
-     */
-    getUserinfo() {
-        return AsyncStorage.getItem('token', (err, result) => {
-            return result;
-        });
-    }
-
-
-    /**
-     * id passed to state.user.id
-     * @param id
-     */
-    setUserInfos(id) {
-        this.setState({
-            user: {id}
-        })
-    };
-
     /**
      * get user balance from api
      * @returns {Promise. user balance}
      */
     getCurrentBalance() {
         return AsyncStorage.getItem('token')
-            .then((token) => fetch('http://172.17.101.184:8887/users/getAmount', {
+            .then((token) => fetch(settings.server+'users/balance', {
                 method: 'POST',
                 headers: {
                     'x-access-token': token
@@ -184,6 +201,7 @@ class RouletteViewContainer extends Component {
                 stakeChoice={this.state.stake}
                 onColorChange={this.colorChange.bind(this)}
                 onStakeChange={this.stakeChange.bind(this)}
+                betDisabled={this.state.disabled}
                 betValue={this.state.bet.value}
                 betColor={this.state.bet.color}/>
         );

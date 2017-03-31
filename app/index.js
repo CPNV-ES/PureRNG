@@ -2,7 +2,6 @@
 // Index.ios.js and index.android.js will require this file
 import React from 'react';
 import LoggedOut from './layouts/LoggedOut';
-
 const PureRNGapp = (props) => {
     const { status, user, loggingIn } = props;
 
@@ -14,6 +13,9 @@ const PureRNGapp = (props) => {
     // }
     return <LoggedOut />;
 };
+
+
+// CONNECT ....
 
 PureRNGapp.propTypes = {
     status: React.PropTypes.object,

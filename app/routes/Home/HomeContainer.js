@@ -3,11 +3,12 @@ import Home from './Home';
 import Routes from '../../config/routes';
 import AsyncStorage from 'AsyncStorage';
 import jwtDecode from 'jwt-decode';
+import settings from '../../config/settings';
 
 
 /**
  *  Logic behind home display
- *  Rooms displayed via state
+ *  Rooms displayed via server and pushed to current state
  */
 class HomeContainer extends Component {
     constructor(props) {
@@ -28,7 +29,6 @@ class HomeContainer extends Component {
      */
     getUserinfo() {
         return AsyncStorage.getItem('token', (err, result) => {
-
             return result;
         });
     }
@@ -38,9 +38,12 @@ class HomeContainer extends Component {
      * Get all the rooms from the server and put them in the component's state
      */
     componentDidMount(){
-        this.getUserinfo().then((id) => {
+        this.getUserinfo().then((token) => {
             this.setState({
-                username:jwtDecode(id).username
+                user: {
+                    id:jwtDecode(token)._id,
+                    name:jwtDecode(token).username,
+                }
             });
         });
         this.getRooms().then((rooms) => {
@@ -79,7 +82,7 @@ class HomeContainer extends Component {
      * @returns {Promise. -> all the rooms from th server}
      */
     getRooms(){
-        return fetch('http://172.17.101.184:8887/rooms')
+        return fetch(settings.server+'rooms')
             .then((response) => response.json())}
 
     render() {
@@ -87,7 +90,7 @@ class HomeContainer extends Component {
             <Home
                 disconnectOnPress={() => this.props.navigator.push(Routes.getSignIn())}
                 goRouletteOnPress={(roomNumber) => {
-                        this.props.navigator.push(Routes.getRouletteRoom(roomNumber,this.state.username))}
+                        this.props.navigator.push(Routes.getRouletteRoom(roomNumber,this.state.user))}
                     }
                 rouletteRooms={this.state.rooms.roulettes}
                 jackpotRooms={this.state.rooms.jackpots}

@@ -26,30 +26,14 @@ class RouletteContainer extends Component {
     }
 
     /**
-     * Get random number provably fair from API
-     * @returns {Promise.<U>|*|Promise.<TResult>}
-     */
-    getNumber() {
-        return fetch('http://10.0.2.2:8887/roulette/getResult')
-            .then((response) => response.json());
-    }
-
-    /**
      *  1.the server gives us the randomly generated number
      *  2. We set the SpinValue regarding this random number
      *  3. We Animate the wheel
      */
-    // TODO : not onpress but time based (in the room)
-    spinOnPress() {
+    spinOnPress(number) {
 
-
-        this.getNumber().then((number) => {
             this.setSpinValue(number);
-            this.triggerAnimation(() => {
-                console.warn('NICE THIS '+number);
-
-            });
-        });
+            this.triggerAnimation();
     }
 
     /**
@@ -58,7 +42,7 @@ class RouletteContainer extends Component {
      * @param nb
      */
 
-    setSpinValue(nb) {
+    setSpinValue(number) {
         const NumbersValue = {
             9: 405,
             7: 365,
@@ -79,7 +63,7 @@ class RouletteContainer extends Component {
 
 
         this.setState({
-            finalSpinValue:NumbersValue[nb],
+            finalSpinValue:NumbersValue[number],
         })
 
     };
@@ -94,7 +78,7 @@ class RouletteContainer extends Component {
             Animated.timing(
                 this.state.spinValue,
                 {
-                    toValue:-4000,
+                    toValue:-3000,
                     easing: Easing.in(Easing.ease),
                     duration:2000
                 }),
@@ -102,7 +86,7 @@ class RouletteContainer extends Component {
                 this.state.spinValue,
                 {
                     toValue:this.state.finalSpinValue,
-                    duration:1000,
+                    duration:1500,
                     easing: Easing.out(Easing.ease)
                 }),
 

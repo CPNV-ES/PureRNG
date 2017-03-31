@@ -10,10 +10,10 @@ import RouletteView from '../routes/RouletteView';
  * @type {{getRouletteRoom: ((roomNumber, userId)), getHomeRoute: (()), getSignIn: (())}}
  */
 export const routes = {
-    getRouletteRoom(roomNumber, userId) {
+    getRouletteRoom(roomNumber, user) {
         return {
             renderScene(navigator) {
-                return <RouletteView userId={userId} roomNumber={roomNumber} navigator={navigator}/>
+                return <RouletteView user={user} roomNumber={roomNumber} navigator={navigator}/>
             },
         };
     },

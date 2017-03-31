@@ -1,6 +1,6 @@
 /**
  * Observer-like
- * (for testing purpose only)
+ *
  */
 class RouletteViewEvents {
 
@@ -10,9 +10,9 @@ class RouletteViewEvents {
         RouletteViewEvents.spinMethod = spin;
     }
 
-    static spinTrigger() {
+    static spinTrigger(number) {
         if(RouletteViewEvents.spinMethod)
-            RouletteViewEvents.spinMethod();
+            RouletteViewEvents.spinMethod(number);
     }
 
 }

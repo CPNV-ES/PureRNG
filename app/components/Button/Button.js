@@ -10,11 +10,11 @@ import styles from './styles';
  */
 
 const Button = (props) => {
-    const { text, onPress } = props;
+    const { text, onPress, disabled } = props;
 
 
     return (
-        <TouchableOpacity style={styles.buttonww} onPress={onPress}>
+        <TouchableOpacity style={styles.buttonww} disabled={disabled} onPress={onPress}>
             <Text style={styles.loginButtonLabel}>
                 {text}
             </Text>
@@ -25,11 +25,13 @@ const Button = (props) => {
 Button.propTypes = {
     text: React.PropTypes.string,
     onPress: React.PropTypes.func,
+    disabled: React.PropTypes.bool,
 };
 
 Button.defaultProps = {
     text: 'Button Text',
     onPress: () => console.warn('Button Pressed'),
+    disabled: false,
 };
 
 

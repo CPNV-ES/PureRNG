@@ -16,7 +16,6 @@ const RouletteView = (props) => {
 
     return (
         <View style={styles.MainView}>
-            <Text style={styles.white}>Latest rolls : </Text>
             <View style={styles.roulettePlaceholder}>
                 <Roulette />
                 <View style={styles.triangle} />
@@ -25,7 +24,6 @@ const RouletteView = (props) => {
 
             <View style={styles.titles}>
                 <Text style={styles.white}>Balance : {props.currentBalance} coins</Text>
-                <Text style={styles.white}>Next roll in X Seconds</Text>
             </View>
 
             <RouletteStakesChoice
@@ -46,17 +44,13 @@ const RouletteView = (props) => {
                     style={styles.white}
                     text="go back to home"
                     onPress={props.backHome}
-                />
-                <Button
-                    style={styles.white}
-                    text="spin dis"
-                    onPress={props.spinOnPress}
-                    color="#841584"
+
                 />
                 <Button
                     style={styles.white}
                     text="BET NOW !"
                     onPress={props.betOnPress}
+                    disabled={props.betDisabled}
                 />
                 <Text style={styles.white}>Current bet :</Text>
                 {props.betValue !== undefined && props.betColor !== undefined || props.betValue == null && props.betColor == null || props.betColor !== 'None selected' ? (
@@ -81,6 +75,7 @@ RouletteView.propTypes = {
     betOnPress: React.PropTypes.func,
     betValue:React.PropTypes.number,
     betColor:React.PropTypes.string,
+    betDisabled: React.PropTypes.bool,
 };
 
 
